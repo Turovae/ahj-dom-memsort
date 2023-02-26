@@ -29,6 +29,12 @@ export default class Table {
     this.tbody = document.createElement('tbody');
     table.appendChild(this.tbody);
 
+    this.redrawTBody();
+  }
+
+  redrawTBody() {
+    this.tbody.innerHTML = null;
+
     for (let i = 0; i < this.data.length; i += 1) {
       const row = document.createElement('tr');
       this.tbody.appendChild(row);
@@ -50,20 +56,21 @@ export default class Table {
       elem.classList.remove('sort-down');
       elem.classList.remove('sort-up');
     });
-    const rows = Array.from(this.tbody.children);
-    rows.sort((rowA, rowB) => {
-      if (Number.isNaN(+rowA.dataset[type])) {
-        return rowA.dataset[type] > rowB.dataset[type] ? 1 : -1;
+
+    this.data.sort((elemA, elemB) => {
+      if (Number.isNaN(+elemA[type])) {
+        return elemA[type].localeCompare(elemB[type]);
       }
-      return rowA.dataset[type] - rowB.dataset[type];
+      return elemA[type] - elemB[type];
     });
     switch (direction) {
       case 'down':
-        this.tbody.append(...rows);
+        this.redrawTBody();
         this.thead.querySelector(`[data-type=${type}]`).classList.add('sort-down');
         break;
       case 'up':
-        this.tbody.append(...rows.reverse());
+        this.data.reverse();
+        this.redrawTBody();
         this.thead.querySelector(`[data-type=${type}]`).classList.add('sort-up');
         break;
       default:
