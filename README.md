@@ -8,6 +8,10 @@
 1. В качестве результата присылайте проверяющему ссылки на ваши GitHub-проекты
 
 ---
+[![DOM Loading and Sorting](https://github.com/Turovae/ahj-dom-memsort/actions/workflows/web.yml/badge.svg)](https://github.com/Turovae/ahj-dom-memsort/actions/workflows/web.yml)
+[![Build status](https://ci.appveyor.com/api/projects/status/x20obr0l05xliq0e?svg=true)](https://ci.appveyor.com/project/Turovae/ahj-dom-memsort)
+
+---
 
 ### In-Memory Sorting (задача со звёздочкой)
 
